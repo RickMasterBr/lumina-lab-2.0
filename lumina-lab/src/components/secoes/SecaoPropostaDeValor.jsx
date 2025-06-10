@@ -8,12 +8,12 @@ const SecaoPropostaDeValor = ({ titulo, descricao, urlImagem, altImagem }) => {
       <div className="grid md:grid-cols-2 gap-12 items-center">
         {/* Coluna de Texto */}
         <div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-light-text">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-light-text">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--cor-primaria-usr)] to-[color:var(--cor-secundaria-usr)]">
               {titulo}
             </span>
           </h2>
-          <p className="text-lg text-medium-text leading-relaxed mb-8">
+          <p className="text-base sm:text-lg text-medium-text leading-relaxed mb-8">
             {descricao}
           </p>
           <ul className="space-y-4 text-medium-text">

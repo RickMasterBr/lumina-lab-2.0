@@ -3,19 +3,19 @@ import Botao from "@/components/comum/Botao";
 
 const CardCliente = ({ cliente }) => {
   return (
-    <div className="bg-dark-card rounded-xl shadow-xl hover:shadow-[var(--cor-primaria-usr)]/30 border border-transparent hover:border-[var(--cor-primaria-usr)]/50 transition-all duration-300 ease-in-out transform hover:-translate-y-1.5 flex flex-col overflow-hidden h-full">
+    <div className="bg-dark-card rounded-xl shadow-xl flex flex-col overflow-hidden h-full">
       <div className="overflow-hidden rounded-t-xl">
         <img
           src={cliente.imagemUrl}
           alt={`Projeto para ${cliente.nome}`}
-          className="w-full h-52 object-cover transform transition-all duration-300 hover:scale-105"
+          className="w-full h-40 object-cover"
         />
       </div>
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-2xl font-semibold text-light-text mb-3">
+      <div className="p-4 flex flex-col flex-grow">
+        <h3 className="text-base font-semibold text-light-text mb-2">
           {cliente.nome}
         </h3>
-        <p className="text-medium-text leading-relaxed flex-grow mb-6 text-sm">
+        <p className="text-xs text-medium-text leading-snug flex-grow mb-4">
           {cliente.descricao}
         </p>
         <div className="mt-auto">

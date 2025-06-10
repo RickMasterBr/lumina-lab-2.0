@@ -157,10 +157,10 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 className="text-4xl md:text-5xl font-bold mb-3 text-light-text">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-light-text">
         {titulo}
       </h2>
-      <p className="text-xl text-medium-text text-center mb-10 max-w-2xl mx-auto">
+      <p className="text-base sm:text-lg text-medium-text text-center mb-10 max-w-2xl mx-auto">
         Simule os primeiros passos para definir uma estratégia de marketing
         digital com a Lúmina.
       </p>

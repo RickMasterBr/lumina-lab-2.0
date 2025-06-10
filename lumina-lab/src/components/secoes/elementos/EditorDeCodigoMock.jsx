@@ -1,77 +1,62 @@
 import React from "react";
 
 const EditorDeCodigoMock = () => {
-  // DADOS CORRIGIDOS: Adicionado type2 onde era necessário.
+  // CONTEÚDO DO CÓDIGO SIMPLIFICADO PARA CABER NO CELULAR
   const linhasDeCodigo = [
-    { type: "comment", text: "// Lúmina Lab: Aplicando Marketing Digital" },
-    { type: "empty" },
+    { type: "comment", text: "// Lúmina: Mkt na Prática" },
     {
       type: "keyword",
       text: "import",
-      name: "{ Canvas, SWOT, MVP }",
+      name: "{Canvas, MVP}",
       from: "from",
-      path: "'@lumina/metodologias';",
+      path: "'@lumina/core';",
     },
     { type: "empty" },
     {
       type: "keyword",
       text: "const",
-      name: "projetoLumina",
+      name: "projeto",
       assign: "=",
-      call: "Canvas.criarProjeto",
-      params: '({ cliente: "Microempreendedor X" });',
+      call: "Canvas.new",
+      params: '({cliente:"X"});',
     },
     { type: "empty" },
-    {
-      type: "keyword",
-      text: "async function",
-      name: "validarSolucao",
-      params: "(projeto) {",
-    },
+    { type: "keyword", text: "function", name: "validar", params: "(p) {" },
     {
       type: "indent",
       type2: "keyword",
       text2: "const",
-      name2: "analise",
+      name2: "mvp",
       assign2: "=",
-      await2: "await",
-      call2: "SWOT.analisar",
-      params2: "(projeto.escopo);",
-    },
-    {
-      type: "indent",
-      type2: "keyword",
-      text2: "const",
-      name2: "prototipo",
-      assign2: "=",
-      call2: "MVP.desenvolver",
-      params2: "(analise, projeto.recursos);",
+      call2: "MVP.dev",
+      params2: "(p);",
     },
     {
       type: "indent",
       type2: "call",
       name2: "console.log",
-      params2: '("Impacto Social Gerado:", prototipo.resultados);',
+      params2: "('Impacto OK');",
     },
     { type: "end", text: "}" },
   ];
 
   return (
-    <div className="bg-slate-800/60 backdrop-blur-lg p-6 rounded-xl shadow-2xl overflow-x-auto text-sm font-mono leading-relaxed border border-slate-700/50 hover:border-brand-primary/60 transition-colors duration-300 transform hover:shadow-brand-primary/20 hover:shadow-lg">
-      <div className="flex items-center pb-3 mb-3 border-b border-slate-700/30">
-        <span className="w-3.5 h-3.5 bg-red-500 rounded-full mr-2 border-2 border-red-700/50"></span>
-        <span className="w-3.5 h-3.5 bg-yellow-400 rounded-full mr-2 border-2 border-yellow-600/50"></span>
-        <span className="w-3.5 h-3.5 bg-green-500 rounded-full mr-auto border-2 border-green-700/50"></span>
+    // Estilos mantidos para ser bem compacto
+    <div className="bg-slate-800/60 backdrop-blur-lg p-3 sm:p-4 md:p-6 rounded-xl shadow-2xl overflow-x-hidden text-xs -tracking-tighter sm:text-sm sm:tracking-normal font-mono leading-relaxed border border-slate-700/50">
+      <div className="flex items-center pb-2 mb-2 sm:pb-3 sm:mb-3 border-b border-slate-700/30">
+        <span className="w-3 h-3 bg-red-500 rounded-full mr-1.5 sm:mr-2"></span>
+        <span className="w-3 h-3 bg-yellow-400 rounded-full mr-1.5 sm:mr-2"></span>
+        <span className="w-3 h-3 bg-green-500 rounded-full mr-auto"></span>
         <span className="text-xs text-slate-500">metodologia.js</span>
       </div>
       <pre>
-        {/* LÓGICA DE RENDERIZAÇÃO CORRIGIDA */}
         {linhasDeCodigo.map((linha, index) => (
           <div key={index} className="flex">
-            <span className="text-slate-600 mr-4 select-none w-4 text-right">
+            <span className="text-slate-600 mr-3 select-none text-right flex-shrink-0">
               {index + 1}
             </span>
-            <div>
+            {/* A classe 'break-all' força a quebra de linha */}
+            <div className="break-all">
               {linha.type === "comment" && (
                 <span className="text-slate-500">{linha.text}</span>
               )}
@@ -80,7 +65,7 @@ const EditorDeCodigoMock = () => {
                 <span className="text-purple-400">{linha.text}</span>
               )}
               {linha.type === "keyword" && (
-                <>
+                <span>
                   <span className="text-purple-400">{linha.text}</span>
                   {linha.name && (
                     <span className="text-sky-300"> {linha.name}</span>
@@ -100,11 +85,11 @@ const EditorDeCodigoMock = () => {
                   {linha.params && (
                     <span className="text-white">{linha.params}</span>
                   )}
-                </>
+                </span>
               )}
               {linha.type === "indent" && (
-                <>
-                  <span className="inline-block w-4"></span> {/* Indentação */}
+                <span>
+                  <span className="inline-block w-3"></span>
                   {linha.type2 === "keyword" && (
                     <span className="text-purple-400">{linha.text2}</span>
                   )}
@@ -126,7 +111,7 @@ const EditorDeCodigoMock = () => {
                   {linha.params2 && (
                     <span className="text-white">{linha.params2}</span>
                   )}
-                </>
+                </span>
               )}
             </div>
           </div>

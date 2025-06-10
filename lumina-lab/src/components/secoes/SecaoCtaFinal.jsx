@@ -8,13 +8,13 @@ const SecaoCtaFinal = ({ titulo, descricao, textoCta, linkCta }) => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
       {/* ---- CÓDIGO CORRIGIDO AQUI ---- */}
-      <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--cor-secundaria-usr)] to-[var(--cor-primaria-usr)]">
           {titulo}
         </span>
       </h2>
 
-      <p className="text-lg md:text-xl text-medium-text max-w-2xl mx-auto mb-10">
+      <p className="text-base sm:text-lg md:text-xl text-medium-text max-w-2xl mx-auto mb-10">
         {descricao}
       </p>
       <Botao

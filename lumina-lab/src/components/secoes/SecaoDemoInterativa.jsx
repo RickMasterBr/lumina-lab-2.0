@@ -6,10 +6,10 @@ import Botao from "@/components/comum/Botao";
 const SecaoDemoInterativa = ({ titulo, descricao }) => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 className="text-4xl md:text-5xl font-bold mb-6 text-light-text">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-light-text">
         {titulo}
       </h2>
-      <p className="text-lg text-medium-text max-w-2xl mx-auto mb-12">
+      <p className="text-base sm:text-lg text-medium-text max-w-2xl mx-auto mb-12">
         {descricao}
       </p>
       {/* A Janela Falsa do Aplicativo */}

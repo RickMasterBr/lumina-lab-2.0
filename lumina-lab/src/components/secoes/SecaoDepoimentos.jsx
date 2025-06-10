@@ -4,10 +4,10 @@ import CardDepoimento from "./elementos/CardDepoimento";
 const SecaoDepoimentos = ({ titulo, depoimentos }) => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 text-light-text">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 text-light-text">
         {titulo}
       </h2>
-      <p className="text-xl text-medium-text text-center mb-16 max-w-2xl mx-auto">
+      <p className="text-base sm:text-lg text-medium-text text-center mb-16 max-w-2xl mx-auto">
         O feedback de nossos parceiros, alunos e clientes-teste é fundamental
         para a evolução da Lúmina. Veja o que dizem sobre nossa colaboração e
         impacto.

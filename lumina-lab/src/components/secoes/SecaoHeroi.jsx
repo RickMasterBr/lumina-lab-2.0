@@ -62,13 +62,13 @@ const SecaoHeroi = ({
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 animate-fade-in-up">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 animate-fade-in-up">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[var(--cor-primaria-usr)]">
             {titulo}
           </span>
         </h1>
         <p
-          className="text-lg md:text-xl text-medium-text max-w-3xl mx-auto mb-12 animate-fade-in-up"
+          className="text-base sm:text-lg md:text-xl text-medium-text max-w-3xl mx-auto mb-12 animate-fade-in-up"
           style={{ animationDelay: "0.2s" }}
         >
           {subtitulo}

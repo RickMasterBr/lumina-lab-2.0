@@ -8,12 +8,12 @@ const SecaoVitrine = () => {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         <div className="lg:pr-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--cor-primaria-usr)] to-[color:var(--cor-secundaria-usr)]">
               Da Teoria à Prática no Marketing Digital
             </span>
           </h2>
-          <p className="text-lg text-medium-text mb-6">
+          <p className="text-base sm:text-lg text-medium-text mb-6">
             Na Lúmina Lab, traduzimos conhecimento acadêmico em soluções de
             marketing digital aplicáveis, utilizando uma metodologia robusta que
             inclui Business Model Canvas, análise SWOT e desenvolvimento de MVP

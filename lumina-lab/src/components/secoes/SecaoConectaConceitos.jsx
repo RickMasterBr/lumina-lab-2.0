@@ -1,4 +1,4 @@
-"use client"; // Componente com estado e interatividade, precisa ser do lado do cliente.
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Botao from "@/components/comum/Botao";
@@ -11,7 +11,6 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
   const [mensagemFeedback, setMensagemFeedback] = useState(null);
   const [fimDeJogo, setFimDeJogo] = useState(false);
 
-  // Função para embaralhar um array
   const embaralharArray = (array) => {
     const novoArray = [...array];
     for (let i = novoArray.length - 1; i > 0; i--) {
@@ -23,7 +22,7 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
 
   const inicializarJogo = () => {
     setConceitos(embaralharArray(pares));
-    setDefinicoes(embaralharArray(pares)); // Embaralha as definições de forma independente
+    setDefinicoes(embaralharArray(pares));
     setCombinados([]);
     setMensagemFeedback(null);
     setFimDeJogo(false);
@@ -66,7 +65,7 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
           m.idDefinicao === idDefinicao || m.idConceito === idConceitoArrastado
       )
     ) {
-      return; // Retorna se o conceito ou a definição já foram combinados
+      return;
     }
 
     const estaCorreto = idConceitoArrastado === idDefinicao;
@@ -102,17 +101,18 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-light-text">
+      {/* Título e parágrafo ajustados para mobile */}
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 text-light-text">
         {titulo}
       </h2>
-      <p className="text-xl text-medium-text text-center mb-10 max-w-2xl mx-auto">
+      <p className="text-base sm:text-lg text-medium-text text-center mb-10 max-w-2xl mx-auto">
         Arraste o conceito da esquerda para a definição correta à direita. Teste
         seus conhecimentos!
       </p>
-      <div className="grid md:grid-cols-2 gap-8 items-start">
-        {/* Coluna de Conceitos (Arrastáveis) */}
+      <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
+        {/* Coluna de Conceitos */}
         <div className="space-y-3">
-          <h3 className="text-2xl font-semibold text-brand-primary mb-4 text-center">
+          <h3 className="text-xl sm:text-2xl font-semibold text-brand-primary mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--cor-primaria-usr)] to-[color:var(--cor-secundaria-usr)]">
             Conceitos
           </h3>
           {conceitos.map((conceito) => {
@@ -125,7 +125,8 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
                 draggable={!jaCombinado && !fimDeJogo}
                 onDragStart={(e) => lidarArrastarInicio(e, conceito.id)}
                 onDragEnd={lidarArrastarFim}
-                className={`card-conceito bg-dark-card p-4 rounded-lg shadow-md border border-dark-border text-light-text text-center ${
+                // Padding e texto do card ajustados
+                className={`card-conceito bg-dark-card p-3 sm:p-4 rounded-lg shadow-md border border-dark-border text-sm text-light-text text-center ${
                   jaCombinado
                     ? "combinado"
                     : "hover:shadow-glow-brand-primary-sm"
@@ -137,9 +138,9 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
           })}
         </div>
 
-        {/* Coluna de Definições (Zonas para Soltar) */}
+        {/* Coluna de Definições */}
         <div className="space-y-3">
-          <h3 className="text-2xl font-semibold text-brand-secondary mb-4 text-center">
+          <h3 className="text-xl sm:text-2xl font-semibold text-brand-secondary mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--cor-primaria-usr)] to-[color:var(--cor-secundaria-usr)]">
             Definições
           </h3>
           {definicoes.map((def) => {
@@ -152,7 +153,8 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
                 onDragOver={lidarArrastarSobre}
                 onDragLeave={lidarArrastarSaida}
                 onDrop={(e) => lidarSoltar(e, def.id)}
-                className={`zona-soltar p-4 rounded-lg text-medium-text min-h-[80px] flex items-center justify-center text-center ${
+                // Padding, altura e texto da zona ajustados
+                className={`zona-soltar p-3 sm:p-4 rounded-lg text-sm text-medium-text min-h-[72px] flex items-center justify-center text-center ${
                   status || ""
                 }`}
               >
@@ -178,7 +180,7 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
             combinados.filter((m) => m.estaCorreto).length === pares.length
               ? "sucesso"
               : "info"
-          } text-center mt-8`}
+          } text-center mt-8 p-3 sm:p-4 text-sm sm:text-base`}
         >
           {mensagemFeedback}
         </div>

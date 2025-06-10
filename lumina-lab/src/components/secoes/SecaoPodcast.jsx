@@ -38,13 +38,13 @@ const SecaoPodcast = ({ dadosPodcast }) => {
 
         {/* Coluna de Informações */}
         <div className="lg:col-span-3 text-center lg:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold mb-3 text-light-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 text-light-text">
             {titulo}
           </h2>
-          <p className="text-xl text-brand-secondary font-medium mb-6">
+          <p className="text-base sm:text-lg text-brand-secondary font-medium mb-6">
             {subtitulo}
           </p>
-          <p className="text-lg text-medium-text leading-relaxed mb-10">
+          <p className="text-base sm:text-lg text-medium-text leading-relaxed mb-10">
             {descricao}
           </p>
           <h3 className="text-2xl font-semibold text-light-text mb-4">

@@ -38,7 +38,7 @@ const Cabecalho = ({ textoLogo, linksNavegacao }) => {
       } sticky top-0 z-50`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-14 md:h-20">
           <a href="/" className="text-3xl font-bold">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">
               {textoLogo}
