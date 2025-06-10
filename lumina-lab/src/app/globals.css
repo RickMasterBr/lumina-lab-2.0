@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+/* ... (o início com :root e body continua igual) ... */
+:root {
+  --cor-primaria-usr: #8c52ff;
+  --cor-primaria-rgb: 140, 82, 255;
+  --cor-secundaria-usr: #ae85ff;
+  --cor-secundaria-rgb: 174, 133, 255;
+  --fundo-escuro-principal: #0d1117;
+  --fundo-escuro-secundario: #161b22;
+  --texto-principal: #c9d1d9;
+  --texto-secundario: #8b949e;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--fundo-escuro-principal);
+  color: var(--texto-principal);
+  font-family: "Montserrat", sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Animação de Fade-in ao Rolar */
+.fade-in-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ... (as classes de fundo de seção continuam as mesmas) ... */
+.section-bg-transparent {
+  background-color: rgba(13, 17, 23, 0.7);
+}
+.section-bg-transparent-darker {
+  background-color: rgba(13, 17, 23, 0.85);
+}
+.section-bg-slate-transparent {
+  background-color: rgba(22, 27, 34, 0.7);
+}
+.section-bg-interactive {
+  background-color: rgba(22, 27, 34, 0.8);
+}
+
+/* Estilos do Cabeçalho */
+.cabecalho-lumina {
+  transition: background-color 0.4s ease-in-out,
+    backdrop-filter 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  background-color: transparent;
+}
+.cabecalho-lumina.scrolled {
+  background-color: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.menu-mobile-lumina {
+  background-color: rgba(22, 27, 34, 0.95);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito de Fundo Aurora */
+.fundo-aurora {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.item-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+}
+.item-aurora-1 {
+  width: 600px;
+  height: 600px;
+  background-color: var(--cor-primaria-usr);
+  top: -250px;
+  left: -250px;
+  animation-name: move-aurora-1;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+.item-aurora-2 {
+  width: 500px;
+  height: 500px;
+  background-color: var(--cor-secundaria-usr);
+  top: 5%;
+  right: -200px;
+  animation-name: move-aurora-2;
+  animation-duration: 25s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-delay: 3s;
+}
+.item-aurora-3 {
+  width: 450px;
+  height: 450px;
+  background-color: #fca311;
+  bottom: -200px;
+  left: 15%;
+  animation-name: move-aurora-3;
+  animation-duration: 18s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-delay: 1.5s;
+}
+
+/* Efeito de Brilho no Card */
+.container-brilho-card {
+  position: relative;
+  overflow: hidden;
+}
+.container-brilho-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 75%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.08) 60%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+.container-brilho-card:hover::before {
+  left: 150%;
+}
+.conteudo-brilho-card {
+  position: relative;
+  z-index: 2;
+}
+
+/* Borda com Gradiente Animado */
+.card-borda-gradiente-animada {
+  position: relative;
+  z-index: 1;
+}
+.card-borda-gradiente-animada::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--cor-primaria-usr),
+    var(--cor-secundaria-usr),
+    var(--cor-primaria-usr)
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  animation: gradientBorderFlow 4s linear infinite;
+}
+.card-borda-gradiente-animada:hover::before {
+  opacity: 1;
+}
+
+/* Montador de Estratégia */
+.card-opcao-estrategia {
+  background-color: var(--fundo-escuro-secundario);
+  border: 2px solid var(--dark-border);
+  transition: all 0.2s ease-in-out;
+}
+.card-opcao-estrategia:hover {
+  border-color: var(--cor-secundaria-usr);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(var(--cor-secundaria-rgb), 0.2);
+}
+.card-opcao-estrategia.selecionado {
+  border-color: var(--cor-primaria-usr);
+  background-color: rgba(var(--cor-primaria-rgb), 0.15);
+  box-shadow: 0 0 10px rgba(var(--cor-primaria-rgb), 0.3);
+  color: var(--texto-principal);
+}
+.card-opcao-estrategia.desabilitado {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: var(--dark-border);
+}
+.card-opcao-estrategia.desabilitado:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Conector de Conceitos */
+.card-conceito {
+  cursor: grab;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.card-conceito.arrastando {
+  opacity: 0.7;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(var(--cor-primaria-rgb), 0.4);
+}
+.card-conceito.combinado {
+  opacity: 0.5;
+  cursor: default;
+  background-color: rgba(var(--cor-secundaria-rgb), 0.1);
+}
+.zona-soltar {
+  border: 2px dashed var(--dark-border);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  min-height: 80px;
+}
+.zona-soltar.over {
+  background-color: rgba(var(--cor-primaria-rgb), 0.1);
+  border-color: var(--cor-primaria-usr);
+}
+.zona-soltar.combinado-correto {
+  border-color: #34d399;
+  background-color: rgba(52, 211, 153, 0.1);
+}
+.zona-soltar.combinado-incorreto {
+  border-color: #f87171;
+  background-color: rgba(248, 113, 113, 0.1);
+}
+.zona-soltar .texto-conceito-na-zona {
+  font-style: italic;
+  color: var(--texto-secundario);
+}
+.zona-soltar.combinado-correto .texto-conceito-na-zona {
+  color: #34d399;
+  font-weight: 500;
+}
+.zona-soltar.combinado-incorreto .texto-conceito-na-zona {
+  color: #f87171;
+  font-weight: 500;
+  text-decoration: line-through;
+}
+.mensagem-feedback {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1.5rem;
+  font-weight: 500;
+}
+.mensagem-feedback.sucesso {
+  background-color: rgba(52, 211, 153, 0.2);
+  color: #34d399;
+  border: 1px solid #34d399;
+}
+.mensagem-feedback.info {
+  background-color: rgba(var(--cor-secundaria-rgb), 0.2);
+  color: var(--cor-secundaria-usr);
+  border: 1px solid var(--cor-secundaria-usr);
+}
+/* Efeito de Animação para o Ícone do Pilar */
+.card-pilar:hover .container-icone-pilar svg {
+  transform: scale(1.1) rotate(-5deg);
+  filter: drop-shadow(0 0 10px rgba(var(--cor-primaria-rgb), 0.5));
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+/* Efeito de Animação para o Ícone da Ferramenta */
+.card-ferramenta:hover .container-icone-ferramenta {
+  transform: translateY(-4px);
+  transition: transform 0.3s ease-in-out;
+}
