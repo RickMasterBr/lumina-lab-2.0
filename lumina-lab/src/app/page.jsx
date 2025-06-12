@@ -55,8 +55,8 @@ export default function Home() {
         <SecaoPropostaDeValor
           titulo="Conheça a Lúmina Lab"
           descricao="A Lúmina é um laboratório acadêmico de marketing digital e inovação do ecossistema Ânima Educação. Nossa missão é conectar estudantes a práticas de mercado, capacitando-os como agentes de mudança através da aplicação de conhecimentos em projetos reais que apoiam microempreendedores e geram impacto social. Somos guiados por três pilares: educação, tecnologia e impacto social."
-          urlImagem="https://picsum.photos/seed/lumina-sobre/600/400?grayscale&blur=1"
-          altImagem="Equipe Lúmina Lab em colaboração ou estudantes trabalhando em projeto de marketing digital."
+          urlImagem="/images/logo-lumina.png"
+          altImagem="Logo da Lúmina Lab"
         />
       </InvolucroSecao>
 

@@ -1,11 +1,18 @@
 import React from "react";
 
 const CardDepoimento = ({ depoimento }) => {
+  // Adicionado um 'return null' para segurança extra caso o depoimento não exista.
+  if (!depoimento) {
+    return null;
+  }
+
   return (
-    <div className="bg-dark-card p-5 rounded-xl shadow-xl border border-dark-border h-full flex flex-col">
+    // EFEITO DE ZOOM: Adicionado 'transition-transform' e 'hover:scale-105'
+    <div className="bg-dark-card p-5 rounded-xl shadow-xl border border-dark-border h-full flex flex-col transition-transform duration-300 hover:scale-105">
       <div className="flex-grow mb-4">
         <svg
-          className="w-8 h-8 text-brand-primary mb-3"
+          // Cor do ícone garantida como roxo
+          className="w-8 h-8 text-[var(--cor-primaria-usr)] mb-3"
           fill="currentColor"
           viewBox="0 0 32 32"
           aria-hidden="true"
@@ -21,11 +28,13 @@ const CardDepoimento = ({ depoimento }) => {
           <img
             src={depoimento.avatarUrl}
             alt={depoimento.name}
-            className="w-10 h-10 rounded-full mr-3 border-2 border-brand-secondary"
+            // COR DA BORDA: Alterada para roxo
+            className="w-10 h-10 rounded-full mr-3 border-2 border-[var(--cor-primaria-usr)]"
           />
         )}
         <div>
-          <p className="font-semibold text-brand-secondary text-sm">
+          {/* COR DO NOME: Alterada para roxo */}
+          <p className="font-semibold text-[var(--cor-primaria-usr)] text-sm">
             {depoimento.name}
           </p>
           <p className="text-xs text-medium-text">{depoimento.company}</p>

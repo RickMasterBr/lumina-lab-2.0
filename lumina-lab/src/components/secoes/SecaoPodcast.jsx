@@ -1,14 +1,11 @@
 "use client";
-
 import React from "react";
-// 1. Importe TODOS os componentes de ícone que esta seção pode precisar
 import {
   IconeSpotify,
   IconeApplePodcasts,
   IconeGooglePodcasts,
 } from "@/constants";
 
-// 2. Crie um "mapa" para associar o nome do ícone ao componente real
 const mapaDeIcones = {
   spotify: IconeSpotify,
   apple: IconeApplePodcasts,
@@ -17,9 +14,9 @@ const mapaDeIcones = {
 
 const SecaoPodcast = ({ dadosPodcast }) => {
   const {
-    titulo,
-    subtitulo,
-    descricao,
+    title: titulo,
+    subtitle: subtitulo,
+    description: descricao,
     coverImageUrl: urlCapa,
     plataformas = [],
   } = dadosPodcast || {};
@@ -27,7 +24,7 @@ const SecaoPodcast = ({ dadosPodcast }) => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid lg:grid-cols-5 gap-12 items-center">
-        {/* Coluna da Imagem (sem alterações) */}
+        {/* Coluna da Imagem */}
         <div className="lg:col-span-2">
           <img
             src={urlCapa}
@@ -38,33 +35,32 @@ const SecaoPodcast = ({ dadosPodcast }) => {
 
         {/* Coluna de Informações */}
         <div className="lg:col-span-3 text-center lg:text-left">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 text-light-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-light-text">
             {titulo}
           </h2>
-          <p className="text-base sm:text-lg text-brand-secondary font-medium mb-6">
+          <p className="text-lg sm:text-xl text-[var(--cor-secundaria-usr)] font-medium mb-6">
             {subtitulo}
           </p>
           <p className="text-base sm:text-lg text-medium-text leading-relaxed mb-10">
             {descricao}
           </p>
-          <h3 className="text-2xl font-semibold text-light-text mb-4">
+
+          {/* <h3 className="text-2xl font-semibold text-light-text mb-4">
             Ouça Agora:
-          </h3>
+          </h3>*/}
           <div className="flex flex-wrap justify-center lg:justify-start gap-4">
             {plataformas.map((plataforma) => {
-              // 3. Use o mapa para encontrar o componente do ícone correto
               const Icone = mapaDeIcones[plataforma.iconName];
               if (!Icone) return null;
-
               return (
                 <a
                   key={plataforma.name}
                   href={plataforma.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center space-x-2.5 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-bg ${plataforma.bgColorClass} ${plataforma.textColorClass} <span class="math-inline">\{plataforma\.hoverBgColorClass\} focus\:ring\-\[</span>{plataforma.bgColorClass}]`}
+                  // MUDANÇA AQUI: Recriei completamente o className para ser simples e funcional
+                  className={`flex items-center space-x-2.5 px-5 py-3 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 ${plataforma.bgColorClass} ${plataforma.textColorClass} ${plataforma.hoverBgColorClass}`}
                 >
-                  {/* 4. Renderize o ícone encontrado */}
                   <Icone className="w-6 h-6" />
                   <span>{plataforma.name}</span>
                 </a>

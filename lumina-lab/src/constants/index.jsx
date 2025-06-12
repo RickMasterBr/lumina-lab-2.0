@@ -429,21 +429,24 @@ export const DADOS_CLIENTES = [
     nome: "Cliente-Teste ABCC",
     descricao:
       "Fortalecimento da presença digital para gerar visibilidade e conversão, com foco na geração de doações e voluntariado.",
-    imagemUrl: "https://picsum.photos/seed/abcc/400/300?grayscale",
+    // MUDANÇA AQUI
+    imagemUrl: "/images/logo-abcc.jpg",
   },
   {
     id: "c2",
     nome: "Cliente-Teste Flor de Sal",
     descricao:
       "Criação de uma estratégia de marketing digital para aumentar a visibilidade da marca e atrair novos clientes para o negócio social.",
-    imagemUrl: "https://picsum.photos/seed/flordesal/400/300?grayscale",
+    // MUDANÇA AQUI
+    imagemUrl: "/images/logo-flor-de-sal.jpg",
   },
   {
     id: "c3",
     nome: "Cliente-Teste Vanilla",
     descricao:
       "Desenvolvimento de uma identidade digital coesa e ações direcionadas para engajamento e apoio a microempreendedores.",
-    imagemUrl: "https://picsum.photos/seed/vanilla/400/300?grayscale",
+    // MUDANÇA AQUI
+    imagemUrl: "/images/logo-vanilla.png",
   },
 ];
 
@@ -474,12 +477,12 @@ export const DADOS_COMO_FUNCIONA = [
 export const DADOS_PODCAST = {
   title: "Engaj(ai)",
   subtitle: "Marketing Digital, Inovação e Impacto na Prática",
-  description: "Conecte-se com as mentes da Lúmina Lab! ...",
-  coverImageUrl:
-    "https://picsum.photos/seed/engajaipodcast/600/600?grayscale&blur=1",
-  platforms: [
-    // ---- CORREÇÃO FINAL AQUI ----
-    // Trocamos 'icon' por 'iconName' com um texto simples
+  // MUDANÇA AQUI: Completei a descrição para que o texto apareça.
+  // Sinta-se à vontade para alterar para a descrição real do seu podcast.
+  description:
+    "Conecte-se com as mentes da Lúmina Lab! Em cada episódio, exploramos as tendências do marketing digital, discutimos cases de inovação e compartilhamos as histórias de impacto dos nossos projetos com a comunidade.",
+  coverImageUrl: "/images/engajai_1.png",
+  plataformas: [
     {
       name: "Spotify",
       url: "#",

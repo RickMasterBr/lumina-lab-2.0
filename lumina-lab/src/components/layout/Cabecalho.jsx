@@ -1,5 +1,4 @@
-"use client"; // Diretiva essencial para componentes com interatividade
-
+"use client";
 import React, { useState, useEffect } from "react";
 
 const Cabecalho = ({ textoLogo, linksNavegacao }) => {
@@ -10,10 +9,8 @@ const Cabecalho = ({ textoLogo, linksNavegacao }) => {
     const lidarComScroll = () => {
       setPaginaRolada(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", lidarComScroll);
-    lidarComScroll(); // Verifica o estado inicial no carregamento
-
+    lidarComScroll();
     return () => {
       window.removeEventListener("scroll", lidarComScroll);
     };
@@ -35,24 +32,27 @@ const Cabecalho = ({ textoLogo, linksNavegacao }) => {
     <header
       className={`cabecalho-lumina ${
         paginaRolada ? "scrolled" : ""
-      } sticky top-0 z-50`}
+      } sticky top-0 z-50 bg-white shadow-sm transition-shadow duration-300`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 md:h-20">
-          <a href="/" className="text-3xl font-bold">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">
-              {textoLogo}
-            </span>
+        <div className="flex items-center justify-between min-h-16 md:min-h-20 py-2">
+          {/* LOGO */}
+          <a href="/" className="flex items-center">
+            <img
+              src="/images/logo-lumina-header.png"
+              alt="Lúmina Lab Logo"
+              className="h-10 w-auto" // Controla a altura da logo
+            />
           </a>
 
-          {/* Menu Desktop */}
-          <nav className="hidden md:flex space-x-8 items-center">
+          {/* MENU DESKTOP */}
+          <nav className="hidden md:flex space-x-6 items-center">
             {linksNavegacao.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => lidarCliqueLink(e, link.href)}
-                className="text-medium-text hover:text-brand-primary transition-colors duration-300 font-medium cursor-pointer"
+                className="text-medium-text hover:text-[var(--cor-primaria-usr)] transition-colors duration-300 font-medium cursor-pointer text-sm whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -60,17 +60,17 @@ const Cabecalho = ({ textoLogo, linksNavegacao }) => {
             <a
               href="#contato"
               onClick={(e) => lidarCliqueLink(e, "#contato")}
-              className="bg-brand-primary text-white px-4 py-2 rounded-md hover:bg-opacity-80 transition-colors duration-300 font-medium cursor-pointer"
+              className="bg-[var(--cor-primaria-usr)] text-white px-5 py-2 rounded-lg font-medium text-sm cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(var(--cor-primaria-rgb),0.4)] whitespace-nowrap"
             >
               Fale Conosco
             </a>
           </nav>
 
-          {/* Botão do Menu Mobile */}
+          {/* BOTÃO MENU MOBILE */}
           <div className="md:hidden">
             <button
               onClick={() => setMenuMobileAberto(!menuMobileAberto)}
-              className="text-light-text hover:text-brand-primary focus:outline-none"
+              className="text-light-text hover:text-[var(--cor-primaria-usr)] focus:outline-none"
               aria-label="Alternar menu"
             >
               <svg
@@ -101,19 +101,19 @@ const Cabecalho = ({ textoLogo, linksNavegacao }) => {
         </div>
       </div>
 
-      {/* Menu Mobile Aberto */}
+      {/* MENU MOBILE */}
       {menuMobileAberto && (
         <div
           id="mobile-menu"
-          className="menu-mobile-lumina md:hidden absolute w-full"
+          className="menu-mobile-lumina md:hidden absolute w-full bg-white border-t border-gray-200"
         >
-          <nav className="flex flex-col items-center space-y-4 py-4">
+          <nav className="flex flex-col items-center space-y-6 py-6 px-4">
             {linksNavegacao.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => lidarCliqueLink(e, link.href)}
-                className="text-medium-text hover:text-brand-primary transition-colors duration-300 font-medium text-lg cursor-pointer"
+                className="text-medium-text hover:text-[var(--cor-primaria-usr)] transition-colors duration-300 font-medium text-base cursor-pointer"
               >
                 {link.label}
               </a>
@@ -121,7 +121,7 @@ const Cabecalho = ({ textoLogo, linksNavegacao }) => {
             <a
               href="#contato"
               onClick={(e) => lidarCliqueLink(e, "#contato")}
-              className="bg-brand-primary text-white px-6 py-3 rounded-md hover:bg-opacity-80 transition-colors duration-300 font-medium text-lg cursor-pointer"
+              className="bg-[var(--cor-primaria-usr)] text-white px-6 py-3 rounded-lg font-medium text-base cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(var(--cor-primaria-rgb),0.4)]"
             >
               Fale Conosco
             </a>

@@ -13,8 +13,14 @@ const SecaoDepoimentos = ({ titulo, depoimentos }) => {
         impacto.
       </p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* O erro provavelmente está na linha abaixo */}
         {depoimentos.map((depoimento) => (
           <div key={depoimento.id} className="h-full">
+            {/*
+              A CORREÇÃO ESTÁ AQUI:
+              Garantimos que a prop se chama exatamente 'depoimento' (no singular)
+              e o valor que ela recebe é o objeto 'depoimento' (no singular) que vem do loop .map().
+            */}
             <CardDepoimento depoimento={depoimento} />
           </div>
         ))}

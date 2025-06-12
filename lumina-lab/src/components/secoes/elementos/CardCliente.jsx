@@ -1,9 +1,11 @@
 import React from "react";
-import Botao from "@/components/comum/Botao";
+// O import do Botao não é mais necessário
+// import Botao from "@/components/comum/Botao";
 
 const CardCliente = ({ cliente }) => {
   return (
-    <div className="bg-dark-card rounded-xl shadow-xl flex flex-col overflow-hidden h-full">
+    // MUDANÇA AQUI: Adicionado efeito de transição e "salto" no hover
+    <div className="bg-dark-card rounded-xl shadow-xl flex flex-col overflow-hidden h-full transition-transform duration-300 hover:-translate-y-2">
       <div className="overflow-hidden rounded-t-xl">
         <img
           src={cliente.imagemUrl}
@@ -19,9 +21,13 @@ const CardCliente = ({ cliente }) => {
           {cliente.descricao}
         </p>
         <div className="mt-auto">
-          <Botao variante="outline" tamanho="sm" href="#">
+          {/* MUDANÇA AQUI: Botão "Ver Projeto" estilizado */}
+          <a
+            href="#"
+            className="inline-block bg-transparent text-[var(--cor-primaria-usr)] border-2 border-[var(--cor-primaria-usr)] px-4 py-2 rounded-lg font-semibold text-sm cursor-pointer transition-all duration-300 transform hover:scale-105 hover:bg-[var(--cor-primaria-usr)]/10"
+          >
             Ver Projeto
-          </Botao>
+          </a>
         </div>
       </div>
     </div>

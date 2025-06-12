@@ -1,5 +1,6 @@
 import React from "react";
-import Botao from "@/components/comum/Botao";
+// O import do Botao não é mais necessário aqui
+// import Botao from "@/components/comum/Botao";
 import EditorDeCodigoMock from "./elementos/EditorDeCodigoMock";
 import { IconeFaiscas as IconeCheck } from "@/constants";
 
@@ -9,7 +10,7 @@ const SecaoVitrine = () => {
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         <div className="lg:pr-8">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--cor-primaria-usr)] to-[color:var(--cor-secundaria-usr)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--cor-primaria-usr)] to-[var(--cor-secundaria-usr)]">
               Da Teoria à Prática no Marketing Digital
             </span>
           </h2>
@@ -21,34 +22,34 @@ const SecaoVitrine = () => {
           </p>
           <ul className="space-y-3 text-medium-text mb-8">
             <li className="flex items-center">
-              <IconeCheck className="w-5 h-5 text-brand-primary mr-3 flex-shrink-0" />
+              <IconeCheck className="w-5 h-5 text-[var(--cor-primaria-usr)] mr-3 flex-shrink-0" />
               <span>
                 Trilhas de Aprendizagem para capacitação contínua em marketing
                 digital.
               </span>
             </li>
             <li className="flex items-center">
-              <IconeCheck className="w-5 h-5 text-brand-primary mr-3 flex-shrink-0" />
+              <IconeCheck className="w-5 h-5 text-[var(--cor-primaria-usr)] mr-3 flex-shrink-0" />
               <span>
                 Projetos Personalizados para microempreendedores e negócios
                 sociais.
               </span>
             </li>
             <li className="flex items-center">
-              <IconeCheck className="w-5 h-5 text-brand-primary mr-3 flex-shrink-0" />
+              <IconeCheck className="w-5 h-5 text-[var(--cor-primaria-usr)] mr-3 flex-shrink-0" />
               <span>
                 Foco em educação prática, tecnologia e transformação social.
               </span>
             </li>
           </ul>
-          <Botao
+
+          {/* MUDANÇA AQUI: Botão "Explorar Trilhas" estilizado */}
+          <a
             href="#aprendizagem"
-            variante="primary"
-            tamanho="md"
-            className="shadow-md hover:shadow-glow-brand-primary-sm"
+            className="inline-block bg-[var(--cor-primaria-usr)] text-white px-6 py-2.5 rounded-lg font-semibold text-base cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(var(--cor-primaria-rgb),0.4)]"
           >
             Explorar Trilhas
-          </Botao>
+          </a>
         </div>
         <div>
           <EditorDeCodigoMock />

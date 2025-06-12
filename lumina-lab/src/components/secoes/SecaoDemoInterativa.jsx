@@ -1,7 +1,7 @@
-"use client"; // Necessário por causa do evento onClick no botão.
-
+"use client";
 import React from "react";
-import Botao from "@/components/comum/Botao";
+// O import do Botao não é mais necessário
+// import Botao from "@/components/comum/Botao";
 
 const SecaoDemoInterativa = ({ titulo, descricao }) => {
   return (
@@ -12,6 +12,7 @@ const SecaoDemoInterativa = ({ titulo, descricao }) => {
       <p className="text-base sm:text-lg text-medium-text max-w-2xl mx-auto mb-12">
         {descricao}
       </p>
+
       {/* A Janela Falsa do Aplicativo */}
       <div className="bg-dark-card rounded-xl shadow-2xl max-w-4xl mx-auto border border-dark-border overflow-hidden">
         {/* Barra de Título da Janela */}
@@ -29,7 +30,7 @@ const SecaoDemoInterativa = ({ titulo, descricao }) => {
         {/* Área de Conteúdo da Demo */}
         <div className="p-8 md:p-12 aspect-[16/10] bg-slate-900/50 flex flex-col items-center justify-center">
           <svg
-            className="w-24 h-24 text-brand-primary opacity-50 mb-6"
+            className="w-24 h-24 text-[var(--cor-primaria-usr)] opacity-50 mb-6"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth="1.5"
@@ -44,14 +45,14 @@ const SecaoDemoInterativa = ({ titulo, descricao }) => {
           <p className="text-2xl text-medium-text italic mb-6">
             Área de Demonstração Interativa
           </p>
-          <Botao
-            variante="primary"
-            tamanho="md"
-            onClick={() => alert("Demonstração iniciada!")} // Ação do botão
-            className="shadow-md hover:shadow-glow-brand-primary-sm"
+
+          {/* MUDANÇA AQUI: Botão "Iniciar Demonstração" estilizado */}
+          <button
+            onClick={() => alert("Demonstração iniciada!")}
+            className="bg-[var(--cor-primaria-usr)] text-white px-6 py-2.5 rounded-lg font-semibold text-base cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(var(--cor-primaria-rgb),0.4)]"
           >
             Iniciar Demonstração
-          </Botao>
+          </button>
         </div>
       </div>
     </div>

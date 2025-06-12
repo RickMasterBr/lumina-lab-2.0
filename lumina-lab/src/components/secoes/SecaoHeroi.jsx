@@ -1,7 +1,8 @@
-"use client"; // Componente interativo, precisa ser do lado do cliente.
-
+"use client";
 import React, { useState, useEffect, useRef } from "react";
-import Botao from "@/components/comum/Botao";
+
+// Como não estamos mais usando o componente <Botao>, podemos remover este import.
+// import Botao from "@/components/comum/Botao";
 
 const SecaoHeroi = ({
   titulo,
@@ -15,6 +16,7 @@ const SecaoHeroi = ({
   const refHeroi = useRef(null);
 
   useEffect(() => {
+    // ... a lógica do useEffect continua a mesma
     const lidarMovimentoMouse = (evento) => {
       if (refHeroi.current) {
         const rect = refHeroi.current.getBoundingClientRect();
@@ -23,12 +25,10 @@ const SecaoHeroi = ({
         setPosicaoMouse({ x, y });
       }
     };
-
     const currentHeroRef = refHeroi.current;
     if (currentHeroRef) {
       currentHeroRef.addEventListener("mousemove", lidarMovimentoMouse);
     }
-
     return () => {
       if (currentHeroRef) {
         currentHeroRef.removeEventListener("mousemove", lidarMovimentoMouse);
@@ -55,12 +55,10 @@ const SecaoHeroi = ({
       className="relative py-28 md:py-40 bg-dark-bg overflow-hidden"
       style={estiloFundoDinamico}
     >
-      {/* Elementos sutis de fundo */}
       <div className="absolute inset-0 opacity-10 animate-subtle-pulse z-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-brand-secondary rounded-full filter blur-3xl"></div>
       </div>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 animate-fade-in-up">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[var(--cor-primaria-usr)]">
@@ -77,23 +75,22 @@ const SecaoHeroi = ({
           className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in-up"
           style={{ animationDelay: "0.4s" }}
         >
-          <Botao
+          {/* MUDANÇA AQUI: Botão "Nossas Soluções" estilizado */}
+          <a
             href={linkCtaPrimario}
-            variante="primary"
-            tamanho="lg"
-            className="shadow-lg hover:shadow-glow-brand-primary-sm"
+            className="bg-[var(--cor-primaria-usr)] text-white px-8 py-3.5 rounded-lg font-semibold text-lg cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(var(--cor-primaria-rgb),0.4)]"
           >
             {textoCtaPrimario}
-          </Botao>
+          </a>
+
+          {/* MUDANÇA AQUI: Botão "Conheça a Lúmina" estilizado */}
           {textoCtaSecundario && linkCtaSecundario && (
-            <Botao
+            <a
               href={linkCtaSecundario}
-              variante="secondary"
-              tamanho="lg"
-              className="shadow-md hover:shadow-glow-brand-secondary-sm"
+              className="bg-[var(--fundo-escuro-principal)] text-[var(--cor-primaria-usr)] border-2 border-[var(--cor-primaria-usr)] px-8 py-3.5 rounded-lg font-semibold text-lg cursor-pointer transition-all duration-300 transform hover:scale-105 hover:bg-brand-primary/10"
             >
               {textoCtaSecundario}
-            </Botao>
+            </a>
           )}
         </div>
       </div>

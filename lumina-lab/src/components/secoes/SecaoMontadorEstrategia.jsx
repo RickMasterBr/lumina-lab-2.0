@@ -1,7 +1,6 @@
-"use client"; // Essencial, pois este componente tem muita lógica e estado.
-
+"use client";
 import React, { useState } from "react";
-import Botao from "@/components/comum/Botao";
+// Import do Botao não é mais necessário
 import CardOpcao from "./elementos/CardOpcao";
 
 const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
@@ -9,13 +8,11 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
   const [selecoes, setSelecoes] = useState({});
   const [mostrarResultado, setMostrarResultado] = useState(false);
 
+  // Toda a lógica do componente (lidarComSelecao, proximoPasso, etc.) permanece a mesma
   const passoAtual = passos[indicePassoAtual];
-
   const lidarComSelecao = (idEscolha, textoEscolha) => {
     const chaveSelecaoAtual = passoAtual.selectionKey;
     let novoValorSelecionado;
-
-    // Lógica para permitir múltiplas seleções no passo dos canais digitais
     if (passoAtual.maxSelections > 1) {
       const selecoesAtuais = selecoes[chaveSelecaoAtual] || [];
       if (selecoesAtuais.includes(textoEscolha)) {
@@ -25,7 +22,7 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
       } else if (selecoesAtuais.length < passoAtual.maxSelections) {
         novoValorSelecionado = [...selecoesAtuais, textoEscolha];
       } else {
-        return; // Limite de seleções atingido
+        return;
       }
     } else {
       novoValorSelecionado = textoEscolha;
@@ -35,7 +32,6 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
       [chaveSelecaoAtual]: novoValorSelecionado,
     }));
   };
-
   const opcaoEstaSelecionada = (textoEscolha) => {
     const selecaoAtual = selecoes[passoAtual.selectionKey];
     if (Array.isArray(selecaoAtual)) {
@@ -43,7 +39,6 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
     }
     return selecaoAtual === textoEscolha;
   };
-
   const opcaoEstaDesabilitada = (textoEscolha) => {
     if (passoAtual.maxSelections > 1) {
       const selecaoAtual = selecoes[passoAtual.selectionKey] || [];
@@ -54,7 +49,6 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
     }
     return false;
   };
-
   const obterChaveInsight = () => {
     const tipoNegocio =
       selecoes.businessType
@@ -76,16 +70,12 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
         ?.toLowerCase()
         .split(" ")[0]
         .replace(/[^a-z0-9]/gi, "") || "default";
-
-    const chaveEspecifica = `<span class="math-inline">\{tipoNegocio\}\_</span>{objetivo}_${canal1}_${canal2}`;
+    const chaveEspecifica = `${tipoNegocio}_${objetivo}_${canal1}_${canal2}`;
     if (insights[chaveEspecifica]) return chaveEspecifica;
-
-    const chaveParcial = `<span class="math-inline">\{tipoNegocio\}\_</span>{objetivo}_${canal1}`;
+    const chaveParcial = `${tipoNegocio}_${objetivo}_${canal1}`;
     if (insights[chaveParcial]) return chaveParcial;
-
     return "default";
   };
-
   const proximoPasso = () => {
     if (indicePassoAtual < passos.length - 1) {
       setIndicePassoAtual(indicePassoAtual + 1);
@@ -93,7 +83,6 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
       setMostrarResultado(true);
     }
   };
-
   const passoAnterior = () => {
     if (mostrarResultado) {
       setMostrarResultado(false);
@@ -101,13 +90,11 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
       setIndicePassoAtual(indicePassoAtual - 1);
     }
   };
-
   const reiniciarMontador = () => {
     setIndicePassoAtual(0);
     setSelecoes({});
     setMostrarResultado(false);
   };
-
   const podeProsseguir = () => {
     const selecaoAtual = selecoes[passoAtual.selectionKey];
     return Array.isArray(selecaoAtual)
@@ -123,34 +110,43 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-light-text">
           Sua Estratégia Simulada:
         </h2>
-        <div className="bg-dark-card p-6 md:p-8 rounded-xl shadow-xl border border-brand-primary/30 max-w-2xl mx-auto text-left space-y-3">
+        <div className="bg-dark-card p-6 md:p-8 rounded-xl shadow-xl border border-[var(--cor-primaria-usr)]/30 max-w-2xl mx-auto text-left space-y-3">
           <p>
-            <strong className="text-brand-secondary">Tipo de Negócio:</strong>{" "}
+            {/* MUDANÇA AQUI: Gradiente no label */}
+            <strong className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--cor-primaria-usr)] to-[var(--cor-secundaria-usr)] font-semibold">
+              Tipo de Negócio:
+            </strong>{" "}
             {selecoes.businessType || "Não definido"}
           </p>
           <p>
-            <strong className="text-brand-secondary">
+            {/* MUDANÇA AQUI: Gradiente no label */}
+            <strong className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--cor-primaria-usr)] to-[var(--cor-secundaria-usr)] font-semibold">
               Objetivo Principal:
             </strong>{" "}
             {selecoes.marketingGoal || "Não definido"}
           </p>
           <p>
-            <strong className="text-brand-secondary">Canais Chave:</strong>{" "}
+            {/* MUDANÇA AQUI: Gradiente no label */}
+            <strong className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--cor-primaria-usr)] to-[var(--cor-secundaria-usr)] font-semibold">
+              Canais Chave:
+            </strong>{" "}
             {(selecoes.digitalChannels || []).join(", ") || "Não definido"}
           </p>
           <p className="mt-4 pt-4 border-t border-dark-border">
-            <strong className="text-brand-primary">Lúmina Focus Point:</strong>{" "}
+            {/* MUDANÇA AQUI: Gradiente no label */}
+            <strong className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--cor-primaria-usr)] to-[var(--cor-secundaria-usr)] font-semibold">
+              Lúmina Focus Point:
+            </strong>{" "}
             {insightResultado}
           </p>
         </div>
-        <Botao
+        {/* MUDANÇA AQUI: Botão estilizado */}
+        <button
           onClick={reiniciarMontador}
-          variante="primary"
-          tamanho="md"
-          className="mt-8"
+          className="mt-8 bg-[var(--cor-primaria-usr)] text-white px-6 py-2.5 rounded-lg font-semibold text-base cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(var(--cor-primaria-rgb),0.4)]"
         >
           Montar Outra Estratégia
-        </Botao>
+        </button>
       </div>
     );
   }
@@ -165,8 +161,11 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
         digital com a Lúmina.
       </p>
       <div className="bg-dark-card p-6 md:p-10 rounded-xl shadow-2xl max-w-3xl mx-auto border border-dark-border">
+        {/* MUDANÇA AQUI: Gradiente no título do passo */}
         <h3 className="text-2xl font-semibold text-brand-primary mb-2">
-          {passoAtual.title}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--cor-primaria-usr)] to-[var(--cor-secundaria-usr)]">
+            {passoAtual.title}
+          </span>
         </h3>
         {passoAtual.description && (
           <p className="text-medium-text mb-6">{passoAtual.description}</p>
@@ -187,27 +186,27 @@ const SecaoMontadorEstrategia = ({ titulo, passos, insights }) => {
           ))}
         </div>
         <div className="mt-8 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-          <Botao
+          {/* MUDANÇA AQUI: Botão "Anterior" estilizado */}
+          <button
             onClick={passoAnterior}
-            variante="secondary"
-            size="md"
             disabled={indicePassoAtual === 0 && !mostrarResultado}
+            className="bg-transparent text-[var(--cor-primaria-usr)] border-2 border-[var(--cor-primaria-usr)] px-6 py-2.5 rounded-lg font-semibold text-base cursor-pointer transition-all duration-300 transform hover:scale-105 hover:bg-[var(--cor-primaria-usr)]/10 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
             {mostrarResultado ? "Voltar" : "Anterior"}
-          </Botao>
+          </button>
           <div className="text-sm text-medium-text">
             Passo {indicePassoAtual + 1} de {passos.length}
           </div>
-          <Botao
+          {/* MUDANÇA AQUI: Botão "Próximo Passo" estilizado */}
+          <button
             onClick={proximoPasso}
-            variante="primary"
-            size="md"
             disabled={!podeProsseguir()}
+            className="bg-[var(--cor-primaria-usr)] text-white px-6 py-2.5 rounded-lg font-semibold text-base cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(var(--cor-primaria-rgb),0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
             {indicePassoAtual === passos.length - 1
               ? "Ver Resultado"
               : "Próximo Passo"}
-          </Botao>
+          </button>
         </div>
       </div>
     </div>

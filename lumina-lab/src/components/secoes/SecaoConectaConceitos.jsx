@@ -1,7 +1,7 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
-import Botao from "@/components/comum/Botao";
+// O import do Botao não é mais necessário
+// import Botao from "@/components/comum/Botao";
 
 const SecaoConectaConceitos = ({ titulo, pares }) => {
   const [conceitos, setConceitos] = useState([]);
@@ -32,6 +32,7 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
     inicializarJogo();
   }, [pares]);
 
+  // A lógica do componente (lidarArrastarInicio, lidarSoltar, etc.) permanece a mesma.
   const lidarArrastarInicio = (e, idConceito) => {
     setIdConceitoArrastado(idConceito);
     e.currentTarget.classList.add("arrastando");
@@ -57,7 +58,6 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
   const lidarSoltar = (e, idDefinicao) => {
     e.preventDefault();
     e.currentTarget.classList.remove("over");
-
     if (
       !idConceitoArrastado ||
       combinados.some(
@@ -67,13 +67,11 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
     ) {
       return;
     }
-
     const estaCorreto = idConceitoArrastado === idDefinicao;
     setCombinados((prev) => [
       ...prev,
       { idConceito: idConceitoArrastado, idDefinicao, estaCorreto },
     ]);
-
     if (combinados.length + 1 === pares.length) {
       setFimDeJogo(true);
       const acertos =
@@ -101,7 +99,6 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Título e parágrafo ajustados para mobile */}
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 text-light-text">
         {titulo}
       </h2>
@@ -112,7 +109,7 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
       <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
         {/* Coluna de Conceitos */}
         <div className="space-y-3">
-          <h3 className="text-xl sm:text-2xl font-semibold text-brand-primary mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--cor-primaria-usr)] to-[color:var(--cor-secundaria-usr)]">
+          <h3 className="text-xl sm:text-2xl font-semibold text-brand-primary mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-[var(--cor-primaria-usr)] to-[var(--cor-secundaria-usr)]">
             Conceitos
           </h3>
           {conceitos.map((conceito) => {
@@ -125,11 +122,11 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
                 draggable={!jaCombinado && !fimDeJogo}
                 onDragStart={(e) => lidarArrastarInicio(e, conceito.id)}
                 onDragEnd={lidarArrastarFim}
-                // Padding e texto do card ajustados
-                className={`card-conceito bg-dark-card p-3 sm:p-4 rounded-lg shadow-md border border-dark-border text-sm text-light-text text-center ${
+                // MUDANÇA AQUI: Adicionado efeito de sombra roxa no hover com transição
+                className={`card-conceito bg-dark-card p-3 sm:p-4 rounded-lg shadow-md border border-dark-border text-sm text-light-text text-center transition-shadow duration-300 ${
                   jaCombinado
                     ? "combinado"
-                    : "hover:shadow-glow-brand-primary-sm"
+                    : "hover:shadow-[0_0_15px_rgba(var(--cor-primaria-rgb),0.25)]"
                 }`}
               >
                 {conceito.concept}
@@ -138,12 +135,13 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
           })}
         </div>
 
-        {/* Coluna de Definições */}
+        {/* Coluna de Definições (sem mudanças de estilo) */}
         <div className="space-y-3">
-          <h3 className="text-xl sm:text-2xl font-semibold text-brand-secondary mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--cor-primaria-usr)] to-[color:var(--cor-secundaria-usr)]">
+          <h3 className="text-xl sm:text-2xl font-semibold text-brand-secondary mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-[var(--cor-primaria-usr)] to-[var(--cor-secundaria-usr)]">
             Definições
           </h3>
           {definicoes.map((def) => {
+            // ... (código da definição continua o mesmo)
             const status = obterStatusCombinacaoDefinicao(def.id);
             const textoConceitoCombinado = obterConceitoParaDefinicao(def.id);
             return (
@@ -153,7 +151,6 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
                 onDragOver={lidarArrastarSobre}
                 onDragLeave={lidarArrastarSaida}
                 onDrop={(e) => lidarSoltar(e, def.id)}
-                // Padding, altura e texto da zona ajustados
                 className={`zona-soltar p-3 sm:p-4 rounded-lg text-sm text-medium-text min-h-[72px] flex items-center justify-center text-center ${
                   status || ""
                 }`}
@@ -186,9 +183,13 @@ const SecaoConectaConceitos = ({ titulo, pares }) => {
         </div>
       )}
       <div className="text-center mt-10">
-        <Botao onClick={inicializarJogo} variante="primary" tamanho="md">
+        {/* MUDANÇA AQUI: Botão "Reiniciar Desafio" estilizado */}
+        <button
+          onClick={inicializarJogo}
+          className="bg-[var(--cor-primaria-usr)] text-white px-6 py-2.5 rounded-lg font-semibold text-base cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(var(--cor-primaria-rgb),0.4)]"
+        >
           {fimDeJogo ? "Jogar Novamente" : "Reiniciar Desafio"}
-        </Botao>
+        </button>
       </div>
     </div>
   );
